@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from datetime import datetime
 import json, os
+from mainapp.models import ProductCategories, Product
 
 MODULE_DIR = os.path.dirname(__file__)
 
@@ -17,12 +18,12 @@ def read_file(name):
 
 
 def products(request):
-    cards, categories = read_file('data_products.json')
+    #cards, categories = read_file('data_products.json')
     year = datetime.now()
     content = {
         'title': 'Geekshop - каталог',
-        'categories': categories,
-        'cards': cards,
+        'categories': ProductCategories.objects.all(),
+        'products': Product.objects.all(),
         'year': year,
     }
     return render(request, 'mainapp/products.html', content)
