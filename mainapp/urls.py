@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from mainapp.views import products, ProductDetail
 
 app_name = 'mainapp'
@@ -7,6 +7,4 @@ urlpatterns = [
     path('detail/<int:pk>/',ProductDetail.as_view(),name='detail'),
     path('category/<int:id_category>',products,name='category'),
     path('page/<int:page>',products,name='page'),
-    path(r'^i18n',include('django.conf.urls.i18n')),
-
 ]
